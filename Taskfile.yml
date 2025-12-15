@@ -1,0 +1,30 @@
+version: '3'
+
+tasks:
+  default:
+    deps:
+      - task: my-parallel-downloader
+    cmds:
+      - echo "unzipping"
+      - echo "validating"
+      - task: validate-downloaded-files
+        silent: false
+      - echo "Download completed"
+  validate-downloaded-files:
+    preconditions:
+      - sh: test -f ./foo
+        msg: "./foo not found."
+      - sh: test -f ./bar
+        msg: "./bar not found."
+    
+  my-parallel-downloader:
+    deps:
+      - for: [foo, bar]
+        task: my-download-task
+        vars:
+          URL: '{{.ITEM}}'
+
+  my-download-task:
+    cmds:
+      - echo 'Downloading {{.URL}}'
+      - touch {{ .URL }}
