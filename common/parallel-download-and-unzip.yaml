@@ -3,12 +3,17 @@ version: '3'
 tasks:
   default:
     deps:
-      - task: my-parallel-downloader
+      - task: parallel-download-task
         vars:
           URLS:
             ref: .URLS
+    vars:
+      FIRST_FILE_NAME:
+        sh: curl --head --remote-name --write-out %{filename_effective} {{ index .URLS 0 }}
     cmds:
       - echo "unzipping"
+      - C:\\PROGRA~1\\7-Zip\\7z.exe x {{ .FIRST_FILE_NAME }} -o"{{ .FIRST_FILE_NAME  | replace ".zip.001" "" }}"
+      # - task: validate-downloaded-files
       - echo "validating"
       # - task: validate-downloaded-files
       #   silent: true
@@ -20,15 +25,20 @@ tasks:
       - sh: test -f ./bar
         msg: "./bar not found."
     
-  my-parallel-downloader:
+  parallel-download-task:
     deps:
       - for: 
           var: URLS
-        task: my-download-task
+        task: download-task
+        silent: true
         vars:
           URL: '{{.ITEM}}'
 
-  my-download-task:
+  download-task:
+    vars:
+      FILE_NAME:
+        sh: curl --head --remote-name --write-out %{filename_effective} {{ .URL }}
     cmds:
-      - echo 'Downloading {{.URL}}'
-      - touch {{ .URL }}
+      - echo "Downloading {{ .FILE_NAME }}"
+      - curl --silent {{ .URL }} -L -J --output "{{ .FILE_NAME }}"
+      

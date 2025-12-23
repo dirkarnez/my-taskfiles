@@ -5,24 +5,23 @@ includes:
     taskfile: ./common/parallel-download-and-unzip.yaml
     internal: true
 
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.001"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.002"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.003"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.004"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.005"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.006"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.007"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.008"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.009"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.010"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.011"
-# "https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.012"
-
 tasks:
   default:
     cmds:
       - echo "Hello"
       - task: parallel-download-and-unzip
         vars:
-          URLS: [auth, logging, metrics]
-      - echo "unzip"
+          URLS:
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.001
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.002
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.003
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.004
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.005
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.006
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.007
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.008
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.009
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.010
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.011
+            - https://github.com/dirkarnez/STM32CubeIDE-portable/releases/download/v1.6.1/STM32CubeIDE-portable-v1.6.1.zip.012
+      - echo "done"
