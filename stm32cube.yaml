@@ -1,0 +1,15 @@
+version: '3'
+
+includes:
+  parallel-download-and-unzip:
+    taskfile: ./common/parallel-download-and-unzip.yaml
+    internal: true
+
+tasks:
+  default:
+    cmds:
+      - echo "Hello"
+      - task: parallel-download-and-unzip
+        vars:
+          URLS: [auth, logging, metrics]
+      - echo "unzip"

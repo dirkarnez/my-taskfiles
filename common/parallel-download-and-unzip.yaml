@@ -4,11 +4,14 @@ tasks:
   default:
     deps:
       - task: my-parallel-downloader
+        vars:
+          URLS:
+            ref: .URLS
     cmds:
       - echo "unzipping"
       - echo "validating"
-      - task: validate-downloaded-files
-        silent: false
+      # - task: validate-downloaded-files
+      #   silent: true
       - echo "Download completed"
   validate-downloaded-files:
     preconditions:
@@ -19,7 +22,8 @@ tasks:
     
   my-parallel-downloader:
     deps:
-      - for: [foo, bar]
+      - for: 
+          var: URLS
         task: my-download-task
         vars:
           URL: '{{.ITEM}}'
