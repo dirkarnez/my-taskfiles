@@ -5,4 +5,4 @@ tasks:
     dotenv:
       - .env
     cmds:
-      - echo '{{.GH_TOKEN}}'
+      - echo $GH_TOKEN
