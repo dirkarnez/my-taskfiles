@@ -27,7 +27,7 @@ jobs:
 
       - shell: cmd
         run: |
-          echo set GH_TOKEN=124 > .env
+          echo GH_TOKEN=124 > .env
 
       - shell: cmd
         run: |
