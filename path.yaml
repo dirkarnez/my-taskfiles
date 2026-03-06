@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  default:
+    dotenv:
+      - .env
+    vars:
+      SOFTWARE_DIR: '{{joinPath .USERPROFILE "Downloads"}}/'
+      SOFTWARE_DIR_NATIVE: '{{.SOFTWARE_DIR | replace "/" "\\" }}'
+    cmds:
+    - echo 'Hello'
+    - echo 'SOFTWARE_DIR = {{ .SOFTWARE_DIR }}'
+    - echo 'SOFTWARE_DIR = {{ .SOFTWARE_DIR_NATIVE }}'
+    
